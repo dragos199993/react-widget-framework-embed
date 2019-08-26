@@ -2,11 +2,11 @@ import React, { FunctionComponent } from 'react';
 import * as styles from '../Assets/Debugbar.module.scss';
 
 const myStyle: any = styles;
-const initEvent: Event = new CustomEvent("clickWidget",{detail: 'something here'});
+const clickEvent: Event = new CustomEvent("clickWidget",{detail: 'something here'});
 
 const DebugBar: FunctionComponent = () => {
   const handleClick: () => void = () => {
-    window.dispatchEvent(initEvent);
+    window.dispatchEvent(clickEvent);
   };
 
   return (

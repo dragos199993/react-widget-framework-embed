@@ -5,6 +5,7 @@ import DebugBar from "./Components/DebugBar";
 import { IWidgetProps } from "./Interfaces/WidgetInterface";
 
 const initEvent: Event = new CustomEvent("init",{detail: 3});
+const destroyEvent: Event = new CustomEvent("destroy",{detail: 'SOME DATA SENT FROM HERE'});
 
 export default {
   /**
@@ -22,11 +23,11 @@ export default {
       },
     };
   },
-
-  on: (event: string, callback: any) => {
-    // eslint-disable-next-line no-restricted-globals
-    addEventListener(event, callback);
-  },
+  //
+  // on: (event: string, callback: any) => {
+  //   // eslint-disable-next-line no-restricted-globals
+  //   addEventListener(event, callback);
+  // },
 
   /**
    * Destroy widget instance
@@ -36,6 +37,7 @@ export default {
     const widgetElement: HTMLElement | null = document.querySelector(selector);
 
     if (widgetElement) {
+      window.dispatchEvent(destroyEvent);
       ReactDOM.unmountComponentAtNode(widgetElement);
       RemoveHtmlElement(selector);
     }
